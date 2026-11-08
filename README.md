@@ -1,5 +1,7 @@
 # Business Insights — Universal Business Intelligence - AI-augmented machine learning analytics platform
 
+**Live website:** https://business-analysis-api-l8de.onrender.com/
+
 Business Insights is a prototype of a generic analytics product a business can sign up for: it creates a workspace, brings in its data, checks and analyses it with SQL, trains a machine-learning model for the business problem it chooses, and uses the **Snwolley Agent API Toolkit** to turn the results into explanations, recommended actions and a management report.
 
 The demo business is **Kasa Telecom**, a fictional Ghanaian mobile and fibre operator that wants to reduce customer churn. The platform itself is not tied to churn: business problems are configuration files, and a second use case (payment delinquency) plus a generic "upload a CSV and pick a target" flow run through the same pipeline.
