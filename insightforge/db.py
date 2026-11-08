@@ -8,10 +8,11 @@ from decimal import Decimal
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
+import certifi
 
 import pandas as pd
 from sqlalchemy import create_engine, event, text
-from sqlalchemy.engine import Engine
+from sqlalchemy.engine import Engine, make_url
 
 from .config import SQL_DIR, get_settings
 from .logging_setup import get_logger
@@ -40,18 +41,56 @@ def get_engine(url: str | None = None) -> Engine:
     log.info("engine created dialect=%s", engine.dialect.name)
     return engine
 
+@lru_cache(maxsize=4)
+def get_engine(url: str | None = None) -> Engine:
+    url = url or get_settings().database_url
+    kwargs: dict[str, Any] = {"future": True, "pool_pre_ping": True}
 
-def init_db(engine: Engine | None = None) -> None:
-    """Create tables (idempotent) and (re)create the silver-layer views."""
-    engine = engine or get_engine()
-    metadata.create_all(engine)
-    statements = [s.strip() for s in (SQL_DIR / "views.sql").read_text().split(";;")]
-    with engine.begin() as conn:
-        for stmt in statements:
-            body = "\n".join(l for l in stmt.splitlines() if not l.strip().startswith("--")).strip()
-            if body:
-                conn.execute(text(body))
-    log.info("schema initialised")
+    if url.startswith("sqlite"):
+        kwargs["connect_args"] = {"check_same_thread": False}
+        engine = create_engine(url, **kwargs)
+
+    elif url.startswith("mysql"):
+        db_url = make_url(url)
+
+        # Remove SSL settings from the URL so they are not passed twice.
+        ssl_options = {
+            "ssl_ca",
+            "ssl_verify_cert",
+            "ssl_verify_identity",
+        }
+        query = {
+            key: value
+            for key, value in db_url.query.items()
+            if key not in ssl_options
+        }
+
+        db_url = db_url.set(query=query)
+
+        # Use certifi's CA bundle and retain SSL certificate verification.
+        kwargs["connect_args"] = {
+            "ssl_ca": certifi.where(),
+            "ssl_verify_cert": True,
+            "ssl_verify_identity": True,
+        }
+
+        engine = create_engine(db_url, **kwargs)
+
+    else:
+        engine = create_engine(url, **kwargs)
+
+    if url.startswith("sqlite"):
+
+        @event.listens_for(engine, "connect")
+        def _sqlite_pragmas(dbapi_conn, _):
+            cur = dbapi_conn.cursor()
+            cur.execute("PRAGMA foreign_keys=ON")
+            cur.execute("PRAGMA journal_mode=WAL")
+            cur.close()
+
+    # Never log the URL itself: it may contain a password.
+    log.info("engine created dialect=%s", engine.dialect.name)
+    return engine
 
 
 # --------------------------------------------------------------------------- named queries
