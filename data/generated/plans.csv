@@ -1,0 +1,9 @@
+plan_id,plan_name,plan_type,monthly_fee,data_gb
+P01,Kasa Lite Bundle,Prepaid,40.0,5
+P02,Kasa Plus Bundle,Prepaid,69.0,12
+P03,Kasa Max Bundle,Prepaid,115.0,25
+P04,Postpaid Basic,Postpaid,120.0,20
+P05,Postpaid Pro,Postpaid,199.0,50
+P06,Postpaid Unlimited,Postpaid,320.0,150
+P07,Home Fibre 50Mbps,Fibre,380.0,500
+P08,Home Fibre 100Mbps,Fibre,550.0,1000

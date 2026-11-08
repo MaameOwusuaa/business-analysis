@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="overview">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Workspace overview</p>
+            <h2>Overview</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <div class="hero-panel">
+            <div>
+              <p class="eyebrow light">Your objective</p>
+              <h3 id="objective-text">Loading workspace…</h3>
+            </div>
+            <a class="secondary-button light-button" href="/static/pages/data.html">Bring in data</a>
+          </div>
+          <div id="overview-kpis" class="kpi-grid"></div>
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Workspace activity</p>
+                  <h3>Analysis readiness</h3>
+                </div>
+              </div>
+              <div id="readiness-list" class="readiness-list"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Latest model</p>
+                  <h3>Model summary</h3>
+                </div>
+              </div>
+              <div id="model-summary" class="model-summary"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

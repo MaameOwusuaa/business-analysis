@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Business Insights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main id="auth-view" class="auth-view">
+      <section class="auth-brand">
+        <div class="brand-mark">BI</div>
+        <div>
+          <p class="eyebrow">Decision intelligence</p>
+          <h1>
+            Business
+            <br>
+            Insights
+          </h1>
+        </div>
+        <p class="brand-copy">Turn your business data into clear, actionable intelligence.</p>
+      </section>
+      <section class="auth-card-wrap">
+        <div class="auth-card">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-auth-tab="login">Log in</button>
+            <button class="auth-tab" data-auth-tab="signup">Create workspace</button>
+          </div>
+          <form id="login-form" class="auth-form active">
+            <h2>Welcome back</h2>
+            <p>Log in to continue to your workspace.</p>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="name@company.com" required>
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="Enter your password" required>
+            </label>
+            <p id="login-error" class="form-error"></p>
+            <button class="primary-button" type="submit">Log in</button>
+            <button id="demo-button" class="demo-button" type="button">Open demo workspace</button>
+          </form>
+          <form id="signup-form" class="auth-form">
+            <h2>Create your workspace</h2>
+            <p>Set up a private business intelligence workspace.</p>
+            <div class="form-grid">
+              <label>
+                Business name
+                <input name="business_name" required>
+              </label>
+              <label>
+                Industry
+                <select id="industry-select" name="industry"></select>
+              </label>
+              <label>
+                Your name
+                <input name="full_name" required>
+              </label>
+              <label>
+                Country or region
+                <input name="country" placeholder="Global">
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required>
+              </label>
+              <label>
+                Password
+                <input type="password" name="password" minlength="8" required>
+              </label>
+            </div>
+            <label>
+              Business objective
+              <textarea name="objective" rows="3" placeholder="What do you want to achieve?"></textarea>
+            </label>
+            <p id="signup-error" class="form-error"></p>
+            <button class="primary-button" type="submit">Create workspace</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div id="app-view" class="app-view hidden">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark small">BI</div>
+          <span>Business Insights</span>
+        </div>
+        <nav class="nav-list">
+          <a class="nav-item active" data-page="overview" href="/static/pages/overview.html">
+            <span>⌂</span>
+            Overview
+          </a>
+          <a class="nav-item" data-page="data" href="/static/pages/data.html">
+            <span>◫</span>
+            Data
+          </a>
+          <a class="nav-item" data-page="analysis" href="/static/pages/analysis.html">
+            <span>▤</span>
+            Analysis
+          </a>
+          <a class="nav-item" data-page="model" href="/static/pages/model.html">
+            <span>⌁</span>
+            Model
+          </a>
+          <a class="nav-item" data-page="predictions" href="/static/pages/predictions.html">
+            <span>◎</span>
+            Predictions
+          </a>
+          <a class="nav-item" data-page="monitoring" href="/static/pages/monitoring.html">
+            <span>◷</span>
+            Monitoring
+          </a>
+          <a class="nav-item" data-page="reports" href="/static/pages/reports.html">
+            <span>▧</span>
+            Reports
+          </a>
+          <a class="nav-item" data-page="ai" href="/static/pages/ai.html">
+            <span>✦</span>
+            AI analyst
+          </a>
+          <a class="nav-item" data-page="settings" href="/static/pages/settings.html">
+            <span>⚙</span>
+            Workspace settings
+          </a>
+        </nav>
+        <div class="workspace-card">
+          <p>Workspace</p>
+          <strong id="workspace-name">—</strong>
+          <span id="workspace-industry">—</span>
+        </div>
+        <button id="logout-button" class="logout-button">Log out</button>
+      </aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p id="page-kicker">Workspace overview</p>
+            <h2 id="page-title">Overview</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active" id="overview-page">
+          <div class="hero-panel">
+            <div>
+              <p class="eyebrow light">Your objective</p>
+              <h3 id="objective-text">Define your next business objective</h3>
+            </div>
+            <button class="secondary-button light-button" data-go="data">Bring in data</button>
+          </div>
+          <div id="overview-kpis" class="kpi-grid"></div>
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Workspace activity</p>
+                  <h3>Analysis readiness</h3>
+                </div>
+              </div>
+              <div id="readiness-list" class="readiness-list"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Latest model</p>
+                  <h3>Model summary</h3>
+                </div>
+              </div>
+              <div id="model-summary" class="model-summary">No model trained yet.</div>
+            </article>
+          </div>
+        </section>
+        <section class="page" id="data-page">
+          <div class="page-actions">
+            <button id="generate-demo" class="primary-button compact">Generate demo data</button>
+            <label class="upload-button">
+              Upload CSV
+              <input id="csv-upload" type="file" accept=".csv">
+            </label>
+          </div>
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Active data</p>
+                  <h3>Datasets</h3>
+                </div>
+              </div>
+              <div id="dataset-list" class="dataset-list"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Data profile</p>
+                  <h3>Preview</h3>
+                </div>
+              </div>
+              <div id="dataset-preview">
+                <p class="empty-state">Select a dataset to inspect its profile.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section class="page" id="analysis-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>SQL and data quality</p>
+                <h3>Business analysis</h3>
+              </div>
+              <span id="analysis-as-of" class="muted-label"></span>
+            </div>
+            <p class="section-intro">Explore key findings and data quality checks from the cleaned business data.</p>
+            <div id="analysis-kpis" class="kpi-grid"></div>
+            <div class="analysis-actions">
+              <button class="secondary-button" data-analysis-insight="kpi_explainer">Explain KPI changes</button>
+              <button class="secondary-button" data-analysis-insight="data_quality_brief">Summarize data quality</button>
+            </div>
+            <div id="analysis-results">
+              <p class="empty-state">Loading analysis…</p>
+            </div>
+          </article>
+        </section>
+        <section class="page" id="model-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Machine learning</p>
+                <h3>Train a model</h3>
+              </div>
+            </div>
+            <div class="model-controls">
+              <label>
+                Dataset
+                <select id="model-dataset"></select>
+              </label>
+              <div id="synthetic-controls">
+                <label>
+                  Business use case
+                  <select id="use-case-select"></select>
+                </label>
+              </div>
+              <div id="custom-controls" class="hidden">
+                <label>
+                  Column to predict
+                  <select id="target-column"></select>
+                </label>
+                <label>
+                  Problem type
+                  <select id="task-type">
+                    <option value="classification">Classification</option>
+                    <option value="regression">Regression</option>
+                  </select>
+                </label>
+                <label id="positive-wrap">
+                  Positive class
+                  <select id="positive-class"></select>
+                </label>
+              </div>
+              <button id="train-button" class="primary-button compact">Train & evaluate</button>
+            </div>
+            <div id="training-status" class="training-status"></div>
+          </article>
+          <article class="panel mt">
+            <div class="panel-header">
+              <div>
+                <p>Evaluation</p>
+                <h3>Latest run</h3>
+              </div>
+            </div>
+            <div id="run-results">
+              <p class="empty-state">Train or select a completed model run.</p>
+            </div>
+            <div class="insight-actions">
+              <button class="secondary-button" data-insight="model_explainer">Explain model results</button>
+              <button class="secondary-button" data-insight="retention_actions">Recommend actions</button>
+            </div>
+            <div id="model-insight" class="ai-output" aria-live="polite"></div>
+          </article>
+        </section>
+        <section class="page" id="predictions-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Scored records</p>
+                <h3>Predictions & priorities</h3>
+              </div>
+              <button id="download-predictions" class="secondary-button">Download CSV</button>
+            </div>
+            <div id="predictions-table"></div>
+          </article>
+        </section>
+        <section class="page" id="monitoring-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Model operations</p>
+                <h3>Monitoring</h3>
+              </div>
+              <button id="refresh-monitoring" class="secondary-button">Refresh</button>
+            </div>
+            <p class="section-intro">Compare the scoring population with the model’s training baseline. Retrain or investigate when a drift status changes.</p>
+            <div id="monitoring-content">
+              <p class="empty-state">Loading monitoring summary…</p>
+            </div>
+          </article>
+        </section>
+        <section class="page" id="reports-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Management reporting</p>
+                <h3>Business report</h3>
+              </div>
+              <button id="download-report" class="primary-button compact" disabled>Generate PDF report</button>
+            </div>
+            <p class="section-intro">Create a workspace report with KPIs, analysis, model evaluation, and grounded AI summaries.</p>
+            <div id="report-summary">
+              <p class="empty-state">Train a model to prepare a report.</p>
+            </div>
+            <p id="report-status" class="training-status" aria-live="polite"></p>
+          </article>
+        </section>
+        <section class="page" id="ai-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Verified workspace insights</p>
+                <h3>Ask the analyst</h3>
+              </div>
+            </div>
+            <div class="ask-box">
+              <textarea id="ai-question" rows="3" placeholder="What changed, what is driving it, and what should we do?"></textarea>
+              <button id="ask-button" class="primary-button compact">Ask</button>
+            </div>
+            <div id="ai-output" class="ai-output">
+              <p class="empty-state">Ask a question about your workspace results.</p>
+            </div>
+          </article>
+        </section>
+        <section class="page" id="settings-page">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Workspace profile</p>
+                <h3>Settings</h3>
+              </div>
+            </div>
+            <p class="section-intro">Keep your workspace details and business objective up to date. Your objective appears on the overview and helps frame analysis.</p>
+            <form id="settings-form" class="settings-form">
+              <label>
+                Business name
+                <input id="settings-name" disabled>
+              </label>
+              <label>
+                Industry
+                <select id="settings-industry"></select>
+              </label>
+              <label>
+                Country or region
+                <input id="settings-country" disabled>
+              </label>
+              <label>
+                Business objective
+                <textarea id="settings-objective" rows="4" placeholder="What outcome are you working toward?"></textarea>
+              </label>
+              <p id="settings-status" class="training-status" aria-live="polite"></p>
+              <button class="primary-button compact" type="submit">Save changes</button>
+            </form>
+          </article>
+          <article class="panel mt">
+            <div class="panel-header">
+              <div>
+                <p>Signed in as</p>
+                <h3>Account</h3>
+              </div>
+            </div>
+            <div class="account-details">
+              <span id="settings-user"></span>
+              <span id="settings-email"></span>
+              <span id="settings-role"></span>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

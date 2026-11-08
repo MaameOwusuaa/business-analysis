@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reports · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="reports">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Management reporting</p>
+            <h2>Reports</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Management reporting</p>
+                <h3>Business report</h3>
+              </div>
+              <button id="download-report" class="primary-button compact">Generate PDF report</button>
+            </div>
+            <p class="section-intro">Create a workspace report with KPIs, analysis, model evaluation, and grounded AI summaries.</p>
+            <div id="report-summary">
+              <p class="empty-state">Preparing report summary…</p>
+            </div>
+            <p id="report-status" class="training-status" aria-live="polite"></p>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

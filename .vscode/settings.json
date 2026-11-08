@@ -1,0 +1,4 @@
+{
+    "python.terminal.useEnvFile": true,
+    "liveServer.settings.port": 5501
+}

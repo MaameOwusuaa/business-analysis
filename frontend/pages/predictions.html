@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Predictions · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="predictions">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Priorities and actions</p>
+            <h2>Predictions & actions</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Scored records</p>
+                <h3>Predictions & priorities</h3>
+              </div>
+              <button id="download-predictions" class="secondary-button">Download CSV</button>
+            </div>
+            <div id="predictions-table">
+              <p class="empty-state">Loading predictions…</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

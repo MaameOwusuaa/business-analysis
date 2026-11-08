@@ -1,0 +1,33 @@
+{
+  "generator": "kasa_telecom_v1",
+  "seed": 42,
+  "n_customers": 8000,
+  "start": "2023-01-01",
+  "as_of": "2026-09-30",
+  "tables": {
+    "plans": {
+      "rows": 8,
+      "sha256": "a06ec3ebd8af197d4d59e39e9a2d466ec3377af23cedbaf0e995c2070f67cd90"
+    },
+    "customers": {
+      "rows": 8120,
+      "sha256": "765fe8328e7d652849ba8040bb4a71c8bab898ca390e34b92305b4ab46c0119b"
+    },
+    "subscriptions": {
+      "rows": 8000,
+      "sha256": "2cd0a98eb37a8768eb66db09ea658c3455947b97514dd2a3508c9efae3aee62a"
+    },
+    "monthly_usage": {
+      "rows": 142238,
+      "sha256": "fd736797c5506cabb1cfa38b7f657a4a2c41af00a5a3a122af5dff4d3327952c"
+    },
+    "payments": {
+      "rows": 141815,
+      "sha256": "04ed3b6468cbb30f9032b5b7de8fcfc20355c3046632bcf39a611de346cce567"
+    },
+    "support_tickets": {
+      "rows": 30079,
+      "sha256": "709b79f7ec3e31911a9f0b4c5ae31486c11c852753dd7dde680adea184b20a94"
+    }
+  }
+}

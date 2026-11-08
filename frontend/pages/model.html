@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Model · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="model">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Machine learning</p>
+            <h2>Model</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Machine learning</p>
+                <h3>Train a model</h3>
+              </div>
+            </div>
+            <div class="model-controls">
+              <label>
+                Dataset
+                <select id="model-dataset"></select>
+              </label>
+              <div id="synthetic-controls">
+                <label>
+                  Business use case
+                  <select id="use-case-select"></select>
+                </label>
+              </div>
+              <div id="custom-controls" class="hidden">
+                <label>
+                  Column to predict
+                  <select id="target-column"></select>
+                </label>
+                <label>
+                  Problem type
+                  <select id="task-type">
+                    <option value="classification">Classification</option>
+                    <option value="regression">Regression</option>
+                  </select>
+                </label>
+                <label id="positive-wrap">
+                  Positive class
+                  <select id="positive-class"></select>
+                </label>
+              </div>
+              <button id="train-button" class="primary-button compact">Train & evaluate</button>
+            </div>
+            <div id="training-status" class="training-status"></div>
+          </article>
+          <article class="panel mt">
+            <div class="panel-header">
+              <div>
+                <p>Evaluation</p>
+                <h3>Latest run</h3>
+              </div>
+            </div>
+            <div id="run-results">
+              <p class="empty-state">Train a model to see evaluation results.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

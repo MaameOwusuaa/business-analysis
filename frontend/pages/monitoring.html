@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monitoring · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="monitoring">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Model operations</p>
+            <h2>Monitoring</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Model operations</p>
+                <h3>Monitoring</h3>
+              </div>
+              <button id="refresh-monitoring" class="secondary-button">Refresh</button>
+            </div>
+            <p class="section-intro">Compare the scoring population with the model’s training baseline. Retrain or investigate when drift status changes.</p>
+            <div id="monitoring-content">
+              <p class="empty-state">Loading monitoring summary…</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

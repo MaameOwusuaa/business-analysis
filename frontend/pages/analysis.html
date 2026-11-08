@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analysis · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="analysis">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>SQL and data quality</p>
+            <h2>Analysis</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>SQL and data quality</p>
+                <h3>Business analysis</h3>
+              </div>
+              <span id="analysis-as-of" class="muted-label"></span>
+            </div>
+            <p class="section-intro">Explore key findings and data quality checks from the cleaned business data.</p>
+            <div id="analysis-kpis" class="kpi-grid"></div>
+            <div class="analysis-actions">
+              <button class="secondary-button" data-analysis-insight="kpi_explainer">Explain KPI changes</button>
+              <button class="secondary-button" data-analysis-insight="data_quality_brief">Summarize data quality</button>
+            </div>
+            <div id="analysis-results">
+              <p class="empty-state">Loading analysis…</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

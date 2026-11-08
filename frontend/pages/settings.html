@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="settings">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Workspace profile</p>
+            <h2>Settings</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p>Workspace profile</p>
+                <h3>Settings</h3>
+              </div>
+            </div>
+            <p class="section-intro">Update the industry and objective used to frame your workspace analysis.</p>
+            <form id="settings-form" class="settings-form">
+              <label>
+                Business name
+                <input id="settings-name" disabled>
+              </label>
+              <label>
+                Industry
+                <select id="settings-industry"></select>
+              </label>
+              <label>
+                Country or region
+                <input id="settings-country" disabled>
+              </label>
+              <label>
+                Business objective
+                <textarea id="settings-objective" rows="4"></textarea>
+              </label>
+              <p id="settings-status" class="training-status" aria-live="polite"></p>
+              <button class="primary-button compact" type="submit">Save changes</button>
+            </form>
+          </article>
+          <article class="panel mt">
+            <div class="panel-header">
+              <div>
+                <p>Signed in as</p>
+                <h3>Account</h3>
+              </div>
+            </div>
+            <div class="account-details">
+              <span id="settings-user"></span>
+              <span id="settings-email"></span>
+              <span id="settings-role"></span>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

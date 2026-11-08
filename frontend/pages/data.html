@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data · Business Insights</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body data-page="data">
+    <div id="app-view" class="app-view">
+      <aside id="sidebar" class="sidebar"></aside>
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p>Data management</p>
+            <h2>Data</h2>
+          </div>
+          <div class="user-chip">
+            <div id="user-avatar">U</div>
+            <div>
+              <strong id="user-name">User</strong>
+              <span id="user-role">Owner</span>
+            </div>
+          </div>
+        </header>
+        <section class="page active">
+          <div class="page-actions">
+            <button id="generate-demo" class="primary-button compact">Generate demo data</button>
+            <label class="upload-button">
+              Upload CSV
+              <input id="csv-upload" type="file" accept=".csv">
+            </label>
+          </div>
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Active data</p>
+                  <h3>Datasets</h3>
+                </div>
+              </div>
+              <div id="dataset-list" class="dataset-list"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p>Data profile</p>
+                  <h3>Preview</h3>
+                </div>
+              </div>
+              <div id="dataset-preview">
+                <p class="empty-state">Select a dataset to inspect its profile.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/static/page-app.js"></script>
+  </body>
+</html>

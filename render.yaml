@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: business-insights
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: STORAGE_DIR
+        value: /tmp/business-insights-storage
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SNWOLLEY_MODE
+        value: mock
+      - key: SNWOLLEY_FALLBACK_TO_MOCK
+        value: true

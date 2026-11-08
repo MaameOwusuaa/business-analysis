@@ -1,0 +1,62 @@
+# A use case is pure configuration: which SQL builds the features, which SQL
+# defines the outcome, and how the result should be read by the business.
+# Adding a new use case = a new label SQL file + a new YAML file. No code change.
+id: churn_90d
+name: Customer churn (next 90 days)
+description: >
+  Predict which active customers will cancel their subscription within the next
+  90 days so the retention team can intervene before they leave.
+task_type: classification
+dataset_sources: [synthetic_telco]
+entity_label: customer
+features_sql: features/customer_snapshot_features.sql
+label_sql: labels/churn_90d.sql
+feature_transform: telco_customer
+horizon_days: 90
+positive_label: Cancels within 90 days
+outcome_noun: churn
+# Out-of-time validation: train on earlier snapshots, test on the latest
+# fully-observed one, then score the current base.
+n_train_snapshots: 4
+snapshot_step_months: 3
+value_column: monthly_fee
+value_label: Monthly fee (GHS)
+business:
+  action: Retention call with a tailored offer
+  target_top_pct: 0.15         # capacity: share of the base the team can contact
+  contact_cost_ghs: 15         # call-centre cost per contact
+  offer_cost_ghs: 60           # average incentive for a customer who accepts
+  save_rate: 0.30              # share of contacted would-be churners retained
+  value_months: 12             # revenue horizon used to value a saved customer
+feature_labels:
+  tenure_months: Tenure (months)
+  age: Customer age
+  contract_type: Contract type
+  autopay: Autopay enabled
+  plan_type: Plan type
+  monthly_fee: Monthly fee (GHS)
+  plan_data_gb: Plan data allowance (GB)
+  region: Region
+  segment: Segment
+  acquisition_channel: Acquisition channel
+  data_gb_avg_3m: Avg data use, last 3 months (GB)
+  data_gb_avg_prev3m: Avg data use, prior 3 months (GB)
+  data_gb_last_month: Data use, last month (GB)
+  data_usage_trend: Data use trend (last 3m / prior 3m)
+  voice_usage_trend: Voice use trend (last 3m / prior 3m)
+  data_utilisation: Share of data allowance used
+  last_month_vs_avg: Last month vs 3-month average data use
+  voice_min_avg_3m: Avg voice minutes, last 3 months
+  voice_min_avg_prev3m: Avg voice minutes, prior 3 months
+  sms_avg_3m: Avg SMS, last 3 months
+  dropped_calls_3m: Dropped calls, last 3 months
+  bills_6m: Bills in last 6 months
+  late_payments_6m: Late payments, last 6 months
+  unpaid_bills_6m: Missed bills, last 6 months
+  unpaid_bills_3m: Missed bills, last 3 months
+  tickets_90d: Support tickets, last 90 days
+  network_tickets_90d: Network tickets, last 90 days
+  billing_tickets_90d: Billing tickets, last 90 days
+  low_csat_tickets_90d: Tickets rated 1-2 (CSAT), last 90 days
+  avg_csat_90d: Average CSAT, last 90 days
+  avg_resolution_hours_90d: Average resolution time (hours), last 90 days

@@ -1,0 +1,40 @@
+# Second use case on the same data - shows the platform is not hard-wired to churn.
+# It reuses the same feature SQL; only the outcome definition differs.
+id: payment_delinquency_90d
+name: Payment delinquency (next 90 days)
+description: >
+  Predict which active customers will pay a bill late or miss one in the next
+  90 days, so collections can send reminders or switch them to autopay early.
+task_type: classification
+dataset_sources: [synthetic_telco]
+entity_label: customer
+features_sql: features/customer_snapshot_features.sql
+label_sql: labels/payment_delinquency_90d.sql
+feature_transform: telco_customer
+horizon_days: 90
+positive_label: Late or missed bill within 90 days
+outcome_noun: delinquency
+n_train_snapshots: 4
+snapshot_step_months: 3
+value_column: monthly_fee
+value_label: Monthly fee (GHS)
+business:
+  action: Proactive payment reminder and autopay enrolment offer
+  target_top_pct: 0.25
+  contact_cost_ghs: 2
+  offer_cost_ghs: 5
+  save_rate: 0.35
+  value_months: 3
+feature_labels:
+  tenure_months: Tenure (months)
+  age: Customer age
+  contract_type: Contract type
+  autopay: Autopay enabled
+  plan_type: Plan type
+  monthly_fee: Monthly fee (GHS)
+  late_payments_6m: Late payments, last 6 months
+  unpaid_bills_6m: Missed bills, last 6 months
+  unpaid_bills_3m: Missed bills, last 3 months
+  billing_tickets_90d: Billing tickets, last 90 days
+  region: Region
+  segment: Segment
