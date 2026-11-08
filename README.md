@@ -76,7 +76,7 @@ Endpoints: `GET /health`, `GET /v1/workspaces/{id}/model`, `GET /v1/workspaces/{
 ### Tests and notebooks
 
 ```bash
-pip install -r requirements-dev.txt
+pip install -r requirements.txt
 pytest -q                                            # 29 tests: data generation, auth, SQL, pipeline, AI guardrails, live-client contract
 python scripts/build_notebooks.py && jupyter nbconvert --to notebook --execute --inplace notebooks/*.ipynb
 ```
