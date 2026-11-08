@@ -92,6 +92,29 @@ def get_engine(url: str | None = None) -> Engine:
     log.info("engine created dialect=%s", engine.dialect.name)
     return engine
 
+def init_db(engine: Engine | None = None) -> None:
+    """Create tables (idempotent) and (re)create the silver-layer views."""
+    engine = engine or get_engine()
+    metadata.create_all(engine)
+
+    statements = [
+        s.strip()
+        for s in (SQL_DIR / "views.sql").read_text().split(";;")
+    ]
+
+    with engine.begin() as conn:
+        for stmt in statements:
+            body = "\n".join(
+                line for line in stmt.splitlines()
+                if not line.strip().startswith("--")
+            ).strip()
+
+            if body:
+                conn.execute(text(body))
+
+    log.info("schema initialised")
+
+
 
 # --------------------------------------------------------------------------- named queries
 @dataclass
