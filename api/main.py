@@ -10,6 +10,7 @@ from __future__ import annotations
 import hmac
 import secrets
 import sys
+import threading
 from pathlib import Path
 from typing import Literal
 
@@ -92,7 +93,13 @@ def _set_session(response: Response, user) -> dict:
 
 @app.on_event("startup")
 def _startup() -> None:
-    init_db()
+    def _initialize_schema() -> None:
+        try:
+            init_db()
+        except Exception as exc:
+            log.warning("database schema initialization deferred: %s", exc)
+
+    threading.Thread(target=_initialize_schema, daemon=True).start()
 
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)

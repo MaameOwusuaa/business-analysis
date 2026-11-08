@@ -72,6 +72,7 @@ def get_engine(url: str | None = None) -> Engine:
             "ssl_ca": certifi.where(),
             "ssl_verify_cert": True,
             "ssl_verify_identity": True,
+            "connect_timeout": 15,
         }
 
         engine = create_engine(db_url, **kwargs)
