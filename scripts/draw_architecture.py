@@ -38,7 +38,7 @@ def main() -> None:
     box(ax, 0.3, 7.2, 3.4, 1.7, "Business users", ["Browser", "Sign-up / login", "Workspace journey"], "ext")
     box(ax, 0.3, 4.9, 3.4, 1.7, "Other systems", ["CRM, dialler, BI", "Bearer-token REST"], "ext")
     # presentation
-    box(ax, 4.6, 7.2, 3.6, 1.7, "Streamlit web app", ["Onboarding, data, SQL,", "model, actions, AI analyst,", "report, monitoring"], "ui")
+    box(ax, 4.6, 7.2, 3.6, 1.7, "HTML, CSS, JavaScript", ["Onboarding, data, SQL,", "model, actions, AI analyst,", "report, monitoring"], "ui")
     box(ax, 4.6, 4.9, 3.6, 1.7, "FastAPI service", ["/health  /model", "/predictions  /insights"], "ui")
     # services
     box(ax, 9.1, 4.3, 3.4, 4.6, "Service layer (Python)", [
